@@ -1,0 +1,6 @@
+Deney,Kullanilan Veri Setleri,Toplam Ornek,Val Accuracy,Val Macro F1,HUMAN Recall,Quick Test Accuracy,Quick Test HUMAN Recall,Rubble Test Accuracy,Rubble Test HUMAN Recall,Model Yolu
+NIGENS,NIGENS,471,0.8085106382978723,0.8012218045112782,0.9666666666666667,0.875,1.0,0.625,0.5,C:\projs\echo_swarm2\models\comparison_nigens.pt
+ESC50_TESS,ESC50 + TESS,2056,0.8835443037974684,0.8833281964349926,0.8097345132743363,0.625,0.25,0.625,0.25,C:\projs\echo_swarm2\models\comparison_esc50_tess.pt
+NIGENS_ESC50,NIGENS + ESC50,1631,0.735202492211838,0.6730024807948131,0.6956521739130435,0.625,0.5,0.625,0.5,C:\projs\echo_swarm2\models\comparison_nigens_esc50.pt
+NIGENS_TESS,NIGENS + TESS,1367,0.9087591240875912,0.8837939165691214,0.8995215311004785,0.375,0.0,0.75,0.5,C:\projs\echo_swarm2\models\comparison_nigens_tess.pt
+NIGENS_ESC50_TESS,NIGENS + ESC50 + TESS,2527,0.8735408560311284,0.8710810132932029,0.7529880478087649,0.5,0.25,0.625,0.25,C:\projs\echo_swarm2\models\comparison_nigens_esc50_tess.pt

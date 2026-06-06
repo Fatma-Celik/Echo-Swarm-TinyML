@@ -1,0 +1,9 @@
+﻿Deney,Veri Seti,Val. Accuracy,Macro F1,HUMAN Recall,Quick Acc.,Quick HUMAN Recall,Rubble Acc.,Rubble HUMAN Recall,Esik
+"Echo Swarm
+Scream Baseline",human_screaming_detection,0.806,0.806,0.895,-,-,-,-,-
+"Echo Swarm 2
+NIGENS",NIGENS,0.916,0.894,0.968,0.875,1.000,0.500,0.250,-
+"Echo Swarm 2
+Birlesik",NIGENS + ESC-50 + TESS,0.897,0.895,0.797,0.625,0.250,0.750,0.500,-
+"Echo Swarm 2
+Rubble-Robust",NIGENS + ESC-50 + TESS,0.755,0.746,0.968,0.625,0.750,0.750,1.000,0.100

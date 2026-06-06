@@ -1,0 +1,11 @@
+dataset/
+raw_data/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+*.zip
+*.rar
+*.7z
+.env
+.venv/
+.DS_Store
