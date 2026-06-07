@@ -30,6 +30,8 @@ Sistem, dağıtık düğüm mimarisi (Master-Slave) ve yarı-merkezi bir karar y
 
 Ham ses verileri doğrudan işlenmez; hesaplama maliyetini düşürmek ve örüntü tanımayı güçlendirmek amacıyla 1.5 saniyelik pencereler halinde **Log-Mel Spektrogram** dönüşümü uygulanır. 
 
+
+
 ### "Rubble-Robust" (Enkaza Dayanıklı) Yaklaşım
 Arama-kurtarma senaryosunda can kaybı riskini önlemek için en kritik metrik **İnsan Sesini Kaçırmama (HUMAN recall)** oranıdır. Temiz verilerle eğitilen baseline model; düşük geçiren filtreleme, beyaz gürültü ve oda yankısı (reverberation) gibi tekniklerle zorlu saha koşullarına adapte edilmiştir. Eşik değeri canlı tespiti lehine kaydırılarak yanlış pozitif toleransı artırılmış, ancak enkaz altında maksimum doğruluk hedeflenmiştir.
 
@@ -53,7 +55,7 @@ Altyapısız ve modemsiz ortamlarda düğümlerin birbiriyle hızlı haberleşme
 <img width="1610" height="1209" alt="IMG_20260521_160220" src="https://github.com/user-attachments/assets/ae7c98f1-c6a0-4b55-aa71-9f0a05420a34" />
 <img width="1474" height="828" alt="Ekran görüntüsü 2026-05-24 123206" src="https://github.com/user-attachments/assets/570ae6b5-a2c3-40fa-889f-87304c348ad4" />
 
-
+https://github.com/user-attachments/assets/24017e9e-7946-4c98-887b-c52b082575a6
 
 ## 📱 TDOA Konumlandırma ve Karar Destek Arayüzü
 
