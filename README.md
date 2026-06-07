@@ -1,58 +1,88 @@
-\# Echo Swarm 2 - Human Audio Detection
+# Echo Swarm: Afet Yönetimi İçin Sürü Zekası Tabanlı Akustik Arama Kurtarma Ağı 🐝📡
+
+[cite_start]Bu proje, deprem sonrası enkaz altında kalan kazazedelerin konumunu, görsel kısıtlılıkların olduğu tozlu ve karanlık ortamlarda akustik verilerle tespit edebilen modüler bir sürü sistem altyapısıdır[cite: 892]. 
+
+[cite_start]Geleneksel ve pahalı arama-kurtarma sistemlerinin aksine, kısıtlı işlemcilerde (ESP32) çalışabilen hafif yapay zeka modelleri (TinyML), altyapısız düşük gecikmeli kablosuz haberleşme (ESP-NOW) ve 3 boyutlu konum kestirimi (TDOA) kullanılarak "süper kulak" mantığıyla çalışan dağıtık bir sistem tasarlanmıştır[cite: 893, 899].
+
+<img width="1927" height="816" alt="ChatGPT Image 6 Haz 2026 17_05_24" src="https://github.com/user-attachments/assets/b1f48797-3bda-439c-ba65-5d5524b09114" />
+
+## 🎓 Disiplinler Arası (Interdisciplinary) Yaklaşım
+
+[cite_start]Proje, üç temel mühendislik disiplininin bütünleşik çalışmasıyla bir afet teknolojisi prototipine dönüşmüştür[cite: 906]:
+* [cite_start]**Bilgisayar Mühendisliği:** İnsan sesi tespiti için TinyML model tasarımı, ESP-NOW sürü haberleşme altyapısı, 3B TDOA konumlandırma algoritmaları ve karar destek mobil arayüzü (Flutter)[cite: 907].
+* [cite_start]**Mekatronik Mühendisliği:** "Hacıyatmaz" (self-righting) küresel mekanizma tasarımı, ESP32 ve MAX9814 mikrofon dizilimli dairesel PCB mimarisi ve Unity 3B Dijital İkiz simülasyonu[cite: 908].
+* [cite_start]**Endüstri Mühendisliği:** Sınırlı sensörlerin enkaz üzerindeki en verimli dağılımı için MCLP (Maximal Covering Location Problem) optimizasyon modeli ve risk analizi[cite: 909].
+
+## 🚀 Sistem Mimarisi
+
+[cite_start]Sistem, dağıtık düğüm mimarisi (Master-Slave) ve yarı-merkezi bir karar yapısı üzerine inşa edilmiştir[cite: 1125]:
+
+1. **Algılama Katmanı:** Sensörler ortamı dinler ve ses eşiği aşıldığında sistemi uyandırır.
+2. [cite_start]**Yapay Zeka Katmanı (Uçta İşleme):** Mikrofonlardan gelen veriler Log-Mel Spektrogram'a dönüştürülür ve hafif CNN modeli ile insan sesi (HUMAN) sınıflandırması yapılır[cite: 901, 902].
+3. [cite_start]**İletim Katmanı:** ESP-NOW protokolü ile zaman damgası ve güven skoru içeren "Olay Tetikleyici Paketler" ana düğüme (Master) iletilir[cite: 903].
+4. [cite_start]**Karar ve Sunum Katmanı:** Master düğüm TDOA ile konumu hesaplar ve Flutter tabanlı çapraz platformlu mobil arayüze aktarır[cite: 904].
 
 
-
-Bu repo, Echo Swarm 2 projesinde geliştirilen insan sesi / insan dışı ses ayrımı deneylerini, eğitilmiş modeli, örnek test seslerini ve sonuç görsellerini içerir.
-
+<img width="1393" height="499" alt="image" src="https://github.com/user-attachments/assets/a44b0b32-afe7-409d-9b64-87b98400b9c3" />
 
 
-\## Amaç
+## 🧠 Uçta Yapay Zeka (TinyML) & Sinyal İşleme
+
+[cite_start]Ham ses verileri doğrudan işlenmez; hesaplama maliyetini düşürmek ve örüntü tanımayı güçlendirmek amacıyla 1.5 saniyelik pencereler halinde **Log-Mel Spektrogram** dönüşümü uygulanır[cite: 901, 1134]. 
+
+### "Rubble-Robust" (Enkaza Dayanıklı) Yaklaşım
+[cite_start]Arama-kurtarma senaryosunda can kaybı riskini önlemek için en kritik metrik **İnsan Sesini Kaçırmama (HUMAN recall)** oranıdır[cite: 918, 1131]. [cite_start]Temiz verilerle eğitilen baseline model; düşük geçiren filtreleme, beyaz gürültü ve oda yankısı (reverberation) gibi tekniklerle zorlu saha koşullarına adapte edilmiştir[cite: 1019]. [cite_start]Eşik değeri canlı tespiti lehine kaydırılarak yanlış pozitif toleransı artırılmış, ancak enkaz altında maksimum doğruluk hedeflenmiştir[cite: 1028, 1040].
+
+<img width="1404" height="1182" alt="page_10_img_1_X36" src="https://github.com/user-attachments/assets/ecfe68e7-d833-4aa1-9259-b8c58ac1fd60" />
+
+## 📡 Donanım ve ESP-NOW Sürü Haberleşmesi
+
+[cite_start]Altyapısız ve modemsiz ortamlarda düğümlerin birbiriyle hızlı haberleşmesi için **ESP-NOW** protokolü kullanılmıştır[cite: 48, 893].
+* [cite_start]C++ `struct` yapıları ve `__attribute__((packed))` kullanılarak payload optimizasyonu yapılmıştır[cite: 1044].
+* [cite_start]Paket kayıplarını önlemek için ACK (Onay Mekanizması) kodlanmıştır[cite: 1045].
+* [cite_start]Master düğüm, ilk algılayan veya sese en yakın düğümü belirleyip sonucu tüm ağa `Broadcast` olarak yayınlar[cite: 42, 69].
+
+**Donanım Pin Konfigürasyonu:**
+| Bileşen | ESP32-WROOM-32D Pin |
+| :--- | :--- |
+| Mikrofon Modülü OUT | GPIO32 |
+| Kırmızı LED (Kazanan/Ses Tespit) | GPIO26 |
+| Sarı LED (Bekleme/Normal Durum) | GPIO27 |
+
+<img width="1610" height="1209" alt="IMG_20260521_160220" src="https://github.com/user-attachments/assets/ae7c98f1-c6a0-4b55-aa71-9f0a05420a34" />
+<img width="1474" height="828" alt="Ekran görüntüsü 2026-05-24 123206" src="https://github.com/user-attachments/assets/570ae6b5-a2c3-40fa-889f-87304c348ad4" />
+<img width="1689" height="1268" alt="Proje" src="https://github.com/user-attachments/assets/457764e1-fd66-4b73-b534-3a1523f5d10b" />
 
 
+## 📱 TDOA Konumlandırma ve Karar Destek Arayüzü
 
-Kısa ses pencereleri üzerinden HUMAN / NON\_HUMAN ayrımı yapan hafif bir ses sınıflandırma modeli geliştirmek ve bu modeli daha sonra ESP32 tabanlı MVP sistemine taşımaktır.
+[cite_start]Düzensiz sensör yerleşimlerinde ses kaynağının 3 boyutlu konumunu tahmin etmek için **TDOA (Zaman Farkı - Time Difference of Arrival)** modeli geliştirilmiştir[cite: 904, 1046]. [cite_start]Veriler; saha ekiplerinin takip edebilmesi için harita destekli (OpenStreetMap), anlık sensör durumunu gösteren, çift yönlü sesli iletişim sunan **Flutter** tabanlı mobil uygulamaya aktarılır[cite: 1071, 1072, 1133].
 
-
-
-\## En Önemli Model
-
-
-
-`models/merged\_human\_nonhuman\_rubble\_best.pt`
+<img width="615" height="450" alt="image" src="https://github.com/user-attachments/assets/00535a23-b14c-4f3e-a273-d5c7f31bd76d" />
+<img width="615" height="454" alt="image" src="https://github.com/user-attachments/assets/fd0ed5a5-fccf-439b-863f-9c4fe957d289" />
 
 
+---
 
-Bu model, boğuk ve enkaz benzeri koşullarda insan sesini kaçırmama hedefiyle geliştirilmiş rubble-robust modeldir.
+## 📂 Klasör Yapısı
 
+* `/docs`: Projenin detaylı disiplinler arası final raporları (PDF).
+* `/src/1_AI_TinyML`: Veri ön işleme (Log-Mel), model eğitimi (CNN) ve çıkarım (inference) Python scriptleri.
+* `/src/2_ESP_NOW_Network`: ESP32 Master ve Slave (Node) cihazları için C++ / Arduino haberleşme kodları.
+* `/models`: Eğitilmiş yapay zeka ağırlık dosyaları (özellikle `merged_human_nonhuman_rubble_best.pt`).
+* `/demo_samples`: Yapay zeka modelini test etmek için örnek `.wav` formatında temiz ve enkaz boğukluğunda ses dosyaları.
 
+## ⚙️ Kurulum ve Çalıştırma
 
-\## Kurulum
-
-
-
+### 1. Yapay Zeka Modelini Test Etme (Python)
+Gerekli kütüphaneleri kurmak ve modeli örnek ses dosyalarıyla denemek için:
 ```powershell
-
 python -m venv .venv
-
-.venv\\Scripts\\activate
-
+.venv\Scripts\activate
 pip install -r requirements.txt
 
+# Temiz insan sesi testi
+python src\1_AI_TinyML\infer_demo.py --wav demo_samples\nigens_quick_test\human\human_01_femaleSpeech.wav
 
-## Demo Inference
-
-Veri setlerini indirmeden, repo icindeki egitilmis model ve demo WAV dosyalariyla hizli test:
-
-```powershell
-python src\infer_demo.py
-```
-
-Belirli bir WAV dosyasi ile test:
-
-```powershell
-python src\infer_demo.py --wav demo_samples\demo_samples\nigens_quick_test\human\human_01_femaleSpeech.wav
-python src\infer_demo.py --wav demo_samples\demo_samples\nigens_quick_test\non_human\nonhuman_01_alarm.wav
-python src\infer_demo.py --wav demo_samples\demo_samples\nigens_rubble_test\human\human_01_femaleSpeech_rubble.wav
-```
-
-Cikti olarak `Prediction`, `Human probability`, `Non-human probability` ve `Decision threshold` degerleri verilir.
+# Enkaz benzeri boğuk insan sesi (Rubble) testi
+python src\1_AI_TinyML\infer_demo.py --wav demo_samples\nigens_rubble_test\human\human_01_femaleSpeech_rubble.wav
