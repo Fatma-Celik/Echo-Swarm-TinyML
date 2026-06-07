@@ -56,14 +56,19 @@ Altyapısız ve modemsiz ortamlarda düğümlerin birbiriyle hızlı haberleşme
 <img width="1474" height="828" alt="Ekran görüntüsü 2026-05-24 123206" src="https://github.com/user-attachments/assets/570ae6b5-a2c3-40fa-889f-87304c348ad4" />
 
 https://github.com/user-attachments/assets/24017e9e-7946-4c98-887b-c52b082575a6
+https://github.com/user-attachments/assets/8d05ecd7-b92d-4070-860c-36bdec64c74e
 
 ## 📱 TDOA Konumlandırma ve Karar Destek Arayüzü
 
 Düzensiz sensör yerleşimlerinde ses kaynağının 3 boyutlu konumunu tahmin etmek için **TDOA (Zaman Farkı - Time Difference of Arrival)** modeli geliştirilmiştir. Veriler; saha ekiplerinin takip edebilmesi için harita destekli (OpenStreetMap), anlık sensör durumunu gösteren, çift yönlü sesli iletişim sunan **Flutter** tabanlı mobil uygulamaya aktarılır.
-
+<p align="center">
 <img width="615" height="450" alt="image" src="https://github.com/user-attachments/assets/00535a23-b14c-4f3e-a273-d5c7f31bd76d" />
 <img width="615" height="454" alt="image" src="https://github.com/user-attachments/assets/fd0ed5a5-fccf-439b-863f-9c4fe957d289" />
-
+<img width="555" height="256" alt="image" src="https://github.com/user-attachments/assets/f1e8ab76-8f12-4e14-89c9-7f5f98914202" />
+<img width="614" height="460" alt="image" src="https://github.com/user-attachments/assets/627f3bba-122b-4347-afa5-2808dadac56f" />
+<img width="612" height="397" alt="image" src="https://github.com/user-attachments/assets/abce712d-02c3-4243-9bca-6318eeb2afca" />
+<img width="615" height="287" alt="image" src="https://github.com/user-attachments/assets/724f1826-dc40-438a-b4dc-8e3bd4585077" />
+</p>
 
 ---
 
