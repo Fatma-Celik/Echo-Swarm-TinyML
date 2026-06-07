@@ -6,7 +6,7 @@ Geleneksel ve pahalı arama-kurtarma sistemlerinin aksine, kısıtlı işlemcile
 
 <img width="1927" height="816" alt="ChatGPT Image 6 Haz 2026 17_05_24" src="https://github.com/user-attachments/assets/b1f48797-3bda-439c-ba65-5d5524b09114" />
 
-## 🎓 Disiplinler Arası (Interdisciplinary) Yaklaşım
+## 🎓 Disiplinler Arası Yaklaşım
 
   Proje, üç temel mühendislik disiplininin bütünleşik çalışmasıyla bir afet teknolojisi prototipine dönüşmüştür:
 * **Bilgisayar Mühendisliği:** İnsan sesi tespiti için TinyML model tasarımı, ESP-NOW sürü haberleşme altyapısı, 3B TDOA konumlandırma algoritmaları ve karar destek mobil arayüzü (Flutter).
